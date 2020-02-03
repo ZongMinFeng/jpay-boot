@@ -4,10 +4,9 @@ spring:
   application:
     name: system
   datasource:
-    url: jdbc:mysql://localhost:3306/jpay
+    url: jdbc:mysql://localhost:3306/jpay?serverTimezone=GMT%2B8
     username: root
     password: 123456
-
   #redis 配置
   redis:
     database: 0
@@ -21,6 +20,9 @@ spring:
       shutdown-timeout: 100ms
     password: ''
     port: 6379
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
 
 mybatis:
   configuration:

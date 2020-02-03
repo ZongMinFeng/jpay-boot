@@ -14,4 +14,7 @@ public class LoginVo {
     private SysInstPo acqInstInfo;
     //transId
     private String transId;
+    //多部门标志
+    private Integer multiDepart=1;//debug
+    private String token="1234567890";//debug
 }

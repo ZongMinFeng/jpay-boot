@@ -25,6 +25,7 @@ public class JpayBootExceptionHandler {
 	 */
 	@ExceptionHandler(JpayBootException.class)
 	public Result<?> handleRRException(JpayBootException e){
+		System.out.println("handleRRException JpayBootException");//debug
 		log.error(e.getMessage(), e);
 		return Result.error(e.getMessage());
 	}
