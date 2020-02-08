@@ -1,6 +1,7 @@
 package com.jpay.modules.message.handle.enums;
 
-import org.jeecg.common.util.oConvertUtils;
+
+import com.jpay.common.util.oConvertUtils;
 
 /**
  * 发送消息类型枚举

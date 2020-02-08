@@ -6,13 +6,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jeecg.common.api.vo.Result;
-import org.jeecg.common.system.base.controller.JeecgController;
-import org.jeecg.common.system.query.QueryGenerator;
-import org.jeecg.modules.message.entity.MsgParams;
-import org.jeecg.modules.message.entity.SysMessageTemplate;
-import org.jeecg.modules.message.service.ISysMessageTemplateService;
-import org.jeecg.modules.message.util.PushMsgUtil;
+import com.jpay.common.pojo.vo.Result;
+import com.jpay.common.system.base.controller.JeecgController;
+import com.jpay.common.system.query.QueryGenerator;
+import com.jpay.modules.message.entity.MsgParams;
+import com.jpay.modules.message.entity.SysMessageTemplate;
+import com.jpay.modules.message.service.ISysMessageTemplateService;
+import com.jpay.modules.message.util.PushMsgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,7 +57,7 @@ public class SysMessageTemplateController extends JeecgController<SysMessageTemp
 	 */
 	@GetMapping(value = "/list")
 	public Result<?> queryPageList(SysMessageTemplate sysMessageTemplate, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
-			@RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize, HttpServletRequest req) {
+								   @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize, HttpServletRequest req) {
 		QueryWrapper<SysMessageTemplate> queryWrapper = QueryGenerator.initQueryWrapper(sysMessageTemplate, req.getParameterMap());
 		Page<SysMessageTemplate> page = new Page<SysMessageTemplate>(pageNo, pageSize);
 		IPage<SysMessageTemplate> pageList = sysMessageTemplateService.page(page, queryWrapper);
@@ -128,24 +128,12 @@ public class SysMessageTemplateController extends JeecgController<SysMessageTemp
 	 * 导出excel
 	 *
 	 * @param request
-	 * @param response
 	 */
 	@GetMapping(value = "/exportXls")
 	public ModelAndView exportXls(HttpServletRequest request,SysMessageTemplate sysMessageTemplate) {
 		return super.exportXls(request, sysMessageTemplate, SysMessageTemplate.class,"推送消息模板");
 	}
 
-	/**
-	 * excel导入
-	 *
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	@PostMapping(value = "/importExcel")
-	public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
-		return super.importExcel(request, response, SysMessageTemplate.class);
-	}
 
 	/**
 	 * 发送消息

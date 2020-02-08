@@ -1,10 +1,10 @@
 package com.jpay.modules.message.util;
 
-import org.jeecg.modules.message.entity.SysMessage;
-import org.jeecg.modules.message.entity.SysMessageTemplate;
-import org.jeecg.modules.message.handle.enums.SendMsgStatusEnum;
-import org.jeecg.modules.message.service.ISysMessageService;
-import org.jeecg.modules.message.service.ISysMessageTemplateService;
+import com.jpay.modules.message.entity.SysMessage;
+import com.jpay.modules.message.entity.SysMessageTemplate;
+import com.jpay.modules.message.handle.enums.SendMsgStatusEnum;
+import com.jpay.modules.message.service.ISysMessageService;
+import com.jpay.modules.message.service.ISysMessageTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

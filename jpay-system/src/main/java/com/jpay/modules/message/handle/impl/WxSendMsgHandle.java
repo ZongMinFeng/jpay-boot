@@ -1,6 +1,6 @@
 package com.jpay.modules.message.handle.impl;
 
-import org.jeecg.modules.message.handle.ISendMsgHandle;
+import com.jpay.modules.message.handle.ISendMsgHandle;
 
 public class WxSendMsgHandle implements ISendMsgHandle {
 

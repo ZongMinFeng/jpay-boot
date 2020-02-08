@@ -2,8 +2,8 @@ package com.jpay.modules.message.mapper;
 
 import java.util.List;
 
+import com.jpay.modules.message.entity.SysMessage;
 import org.apache.ibatis.annotations.Param;
-import org.jeecg.modules.message.entity.SysMessage;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

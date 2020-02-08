@@ -2,12 +2,12 @@ package com.jpay.modules.message.job;
 
 import java.util.List;
 
-import org.jeecg.common.util.DateUtils;
-import org.jeecg.modules.message.entity.SysMessage;
-import org.jeecg.modules.message.handle.ISendMsgHandle;
-import org.jeecg.modules.message.handle.enums.SendMsgStatusEnum;
-import org.jeecg.modules.message.handle.enums.SendMsgTypeEnum;
-import org.jeecg.modules.message.service.ISysMessageService;
+import com.jpay.common.util.DateUtils;
+import com.jpay.modules.message.entity.SysMessage;
+import com.jpay.modules.message.handle.ISendMsgHandle;
+import com.jpay.modules.message.handle.enums.SendMsgStatusEnum;
+import com.jpay.modules.message.handle.enums.SendMsgTypeEnum;
+import com.jpay.modules.message.service.ISysMessageService;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 
 /**
  * 发送消息任务

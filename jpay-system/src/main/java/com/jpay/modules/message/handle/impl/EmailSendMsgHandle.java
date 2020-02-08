@@ -1,7 +1,7 @@
 package com.jpay.modules.message.handle.impl;
 
-import org.jeecg.common.util.SpringContextUtils;
-import org.jeecg.modules.message.handle.ISendMsgHandle;
+import com.jpay.common.util.SpringContextUtils;
+import com.jpay.modules.message.handle.ISendMsgHandle;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 

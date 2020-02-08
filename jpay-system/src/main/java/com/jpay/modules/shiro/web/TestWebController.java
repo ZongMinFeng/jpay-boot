@@ -1,5 +1,10 @@
 package com.jpay.modules.shiro.web;
 
+import com.jpay.common.system.util.JwtUtil;
+import com.jpay.common.util.PasswordUtil;
+import com.jpay.modules.shiro.vo.ResponseBean;
+import com.jpay.system.pojo.po.SysUser;
+import com.jpay.system.service.ISysUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.authz.annotation.Logical;
@@ -7,11 +12,6 @@ import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
-import org.jeecg.common.system.util.JwtUtil;
-import org.jeecg.common.util.PasswordUtil;
-import org.jeecg.modules.shiro.vo.ResponseBean;
-import org.jeecg.modules.system.entity.SysUser;
-import org.jeecg.modules.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

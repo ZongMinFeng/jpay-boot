@@ -2,8 +2,8 @@ package com.jpay.modules.message.service;
 
 import java.util.List;
 
-import org.jeecg.common.system.base.service.JeecgService;
-import org.jeecg.modules.message.entity.SysMessageTemplate;
+import com.jpay.common.system.base.service.JeecgService;
+import com.jpay.modules.message.entity.SysMessageTemplate;
 
 /**
  * @Description: 消息模板

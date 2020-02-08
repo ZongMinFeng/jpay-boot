@@ -1,6 +1,9 @@
 server:
   port: 10086
+
 spring:
+  profiles:
+    active: prod
   application:
     name: system
   datasource:
@@ -24,9 +27,11 @@ spring:
     time-zone: Asia/Shanghai
     date-format: yyyy-MM-dd HH:mm:ss
 
+
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 logging:
   level:
     root: info
