@@ -67,4 +67,12 @@ public class Result<T> implements Serializable {
         this.success = false;
         return this;
     }
+
+    public static Result<Object> ok(Object data) {
+        Result<Object> r = new Result<Object>();
+        r.setSuccess(true);
+        r.setCode(CommonConstant.SC_OK_200);
+        r.setResult(data);
+        return r;
+    }
 }
