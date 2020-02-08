@@ -60,4 +60,11 @@ public class Result<T> implements Serializable {
         this.success = true;
         return this;
     }
+
+    public Result<T> error500(String message) {
+        this.message = message;
+        this.code = CommonConstant.SC_INTERNAL_SERVER_ERROR_500;
+        this.success = false;
+        return this;
+    }
 }
