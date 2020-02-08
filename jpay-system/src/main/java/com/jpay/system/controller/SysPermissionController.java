@@ -422,8 +422,6 @@ public class SysPermissionController {
 	/**
 	  *  获取权限JSON数组
 	 * @param jsonArray
-	 * @param metaList
-	 * @param parentJson
 	 */
 	private void getAllAuthJsonArray(JSONArray jsonArray,List<SysPermission> allList) {
 		JSONObject json = null;
@@ -441,7 +439,6 @@ public class SysPermissionController {
 	  *  获取权限JSON数组
 	 * @param jsonArray
 	 * @param metaList
-	 * @param parentJson
 	 */
 	private void getAuthJsonArray(JSONArray jsonArray,List<SysPermission> metaList) {
 		for (SysPermission permission : metaList) {
@@ -675,7 +672,6 @@ public class SysPermissionController {
 	/**
 	 * 删除菜单权限数据
 	 * 
-	 * @param sysPermissionDataRule
 	 * @return
 	 */
 	@RequestMapping(value = "/deletePermissionRule", method = RequestMethod.DELETE)
