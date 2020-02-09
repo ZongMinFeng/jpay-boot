@@ -1,6 +1,8 @@
 package com.jpay.system.service;
 
-import com.github.pagehelper.PageHelper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jpay.common.exception.JpayBootException;
 import com.jpay.common.util.SnowFlake;
 import com.jpay.system.config.Constant;
@@ -17,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import java.util.List;
 
 @Service
 public class MemberUserService {
-    @Resource
+    @Autowired
     private UserInfoMapper memUserMapper;
 
     @Resource
@@ -91,7 +92,7 @@ public class MemberUserService {
 
         //添加主卡号
         //准备发卡机构信息
-        SysInstPo uInstPo=uInstMapper.selectByPrimaryKey(memberSaveBo.getIssuId());
+        SysInstPo uInstPo=uInstMapper.selectById(memberSaveBo.getIssuId());
         //准备卡类型信息
         SysAccTypePo sysCardTypePo=sysCardTypeMapper.queryByIssuIdAndAccOrder(memberSaveBo.getIssuId(), "00");
         String pan=accountService.cardSave(uInstPo, sysCardTypePo, memUserIssuPo, 0.00, memUserPo.getCreateTellerId());
@@ -150,7 +151,7 @@ public class MemberUserService {
         memUserIssuPoUpdate.setMemId(memUserIssuPo.getMemId());
         memUserIssuPoUpdate.setPrimaryPan(pan);
         memUserIssuPoUpdate.setPrimaryRebatePan(panFl);
-        int i = memUserIssuMapper.updateByPrimaryKeySelective(memUserIssuPoUpdate);
+        int i = memUserIssuMapper.updateById(memUserIssuPoUpdate);
         if (i!=1){
             throw new JpayBootException("新增会员失败");
         }
@@ -163,15 +164,14 @@ public class MemberUserService {
     }
 
     public MemberQueryByConVo memberQueryByCon(MemberQueryByConBo memberQueryByConBo) {
-        PageHelper.startPage(memberQueryByConBo.getPage(), memberQueryByConBo.getPageSize());
-        Example example=new Example(UserMemberPo.class);
-        Example.Criteria criteria=example.createCriteria();
-        criteria.andEqualTo("issuId", memberQueryByConBo.getIssuId());
-        List<UserMemberPo> memUserIssuPos = memUserIssuMapper.selectByExample(example);
+        QueryWrapper<UserMemberPo> userMemberPoQueryWrapper = new QueryWrapper<UserMemberPo>();
+        userMemberPoQueryWrapper.eq("issu_id", memberQueryByConBo.getIssuId());
+        Page<UserMemberPo> page=new Page<UserMemberPo>(memberQueryByConBo.getPage(), memberQueryByConBo.getPageSize());
+        IPage<UserMemberPo> iPage=memUserIssuMapper.selectPage(page, userMemberPoQueryWrapper);
+        List<UserMemberPo> memUserIssuPos=iPage.getRecords();
         List<UserInfoPo> memUserPos=new ArrayList<UserInfoPo>();
         for (UserMemberPo memUserIssuPo:memUserIssuPos){
-            System.out.println(memUserIssuPo);//debug
-            UserInfoPo memUserPo = memUserMapper.selectByPrimaryKey(memUserIssuPo.getUserId());
+            UserInfoPo memUserPo = memUserMapper.selectById(memUserIssuPo.getUserId());
             if (memUserPo!=null){
                 memUserPos.add(memUserPo);
             }
@@ -180,7 +180,7 @@ public class MemberUserService {
         memberQueryByConVo.setRows(memUserPos);
 
         //查询总条数
-        Integer num=memUserIssuMapper.queryTotalNum(memberQueryByConBo.getIssuId());
+        Long num=iPage.getTotal();
         memberQueryByConVo.setAllCount(num);
         return memberQueryByConVo;
     }
@@ -189,7 +189,7 @@ public class MemberUserService {
         //获取会员信息
         UserInfoPo memUserPo;
         if (memberDetails.getUserId()!=null){
-            memUserPo=memUserMapper.selectByPrimaryKey(memberDetails.getUserId());
+            memUserPo=memUserMapper.selectById(memberDetails.getUserId());
             if (memUserPo==null){
                 throw new JpayBootException("查找会员失败");
             }
@@ -207,10 +207,10 @@ public class MemberUserService {
         System.out.println(memberDetails.toString());//debug
 
         //查找主卡号
-        UserAccountPo panPo=panMapper.selectByPrimaryKey(memUserIssuPo.getPrimaryPan());
+        UserAccountPo panPo=panMapper.selectById(memUserIssuPo.getPrimaryPan());
 
         //查找主返利卡号
-        UserAccountPo panPoFl=panMapper.selectByPrimaryKey(memUserIssuPo.getPrimaryRebatePan());
+        UserAccountPo panPoFl=panMapper.selectById(memUserIssuPo.getPrimaryRebatePan());
 
         MemberDetailsQueryByConVo memberDetailsVo=new MemberDetailsQueryByConVo();
         memberDetailsVo.setMemId(memUserPo.getUserId());
@@ -298,7 +298,7 @@ public class MemberUserService {
         saleTo.setCreateTellerId(memberSaleBo.getCreateTellerId());
 
         //消费
-        UserAccountPo panPo=panMapper.selectByPrimaryKey(memUserIssuPo.getPrimaryPan());
+        UserAccountPo panPo=panMapper.selectById(memUserIssuPo.getPrimaryPan());
         Double bal=accountService.sale(saleTo);
         if(panPo==null){
             throw new JpayBootException("消费失败");
@@ -349,7 +349,7 @@ public class MemberUserService {
      */
     @Transactional
     public void memberRefund(MemberRefundBo memberRefundBo) {
-        AcqVoucherPo orgAcqVoucherPo = acqVoucherMapper.selectByPrimaryKey(memberRefundBo.getOrgVoucher());
+        AcqVoucherPo orgAcqVoucherPo = acqVoucherMapper.selectById(memberRefundBo.getOrgVoucher());
         if (orgAcqVoucherPo==null){
             throw new JpayBootException("无此订单");
         }

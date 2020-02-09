@@ -1,15 +1,16 @@
 package com.jpay.system.pojo.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Data
-@Table(name = "acq_mch_info")
+@TableName("acq_mch_info")
 public class AcqMchInfoPo {
-    @Id
+    @TableId(type = IdType.INPUT)
     private String mid;
     private String acqId;
     private Date createDate;

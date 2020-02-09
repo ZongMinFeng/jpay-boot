@@ -1,14 +1,15 @@
 package com.jpay.system.pojo.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Data
-@Table(name = "acq_voucher_detail")
+@TableName("acq_voucher_detail")
 public class AcqVoucherDetailPo {
-    @Id
+    @TableId(type = IdType.INPUT)
     private String transId;
     private String voucher;
     private String account;

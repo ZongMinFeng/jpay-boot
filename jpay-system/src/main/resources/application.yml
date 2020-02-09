@@ -2,8 +2,6 @@ server:
   port: 10086
 
 spring:
-  profiles:
-    active: prod
   application:
     name: system
   datasource:

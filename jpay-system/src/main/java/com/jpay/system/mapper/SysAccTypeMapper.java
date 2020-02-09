@@ -1,11 +1,13 @@
 package com.jpay.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.jpay.system.pojo.po.SysAccTypePo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import tk.mybatis.mapper.common.Mapper;
+import org.springframework.stereotype.Repository;
 
-public interface SysAccTypeMapper extends Mapper<SysAccTypePo> {
+@Repository
+public interface SysAccTypeMapper extends BaseMapper<SysAccTypePo> {
     @Select("SELECT count(*) FROM sys_acc_type WHERE issu_id=#{issuId}")
     Integer queryTotalNum(@Param("issuId") String issuId);
 

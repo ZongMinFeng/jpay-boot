@@ -14,9 +14,9 @@ import javax.annotation.Resource;
 
 @Service
 public class LoginService {
-    @Resource
+    @Autowired
     private AuthUserInfoMapper authUserInfoMapper;
-    @Resource
+    @Autowired
     private SysInstMapper uInstMapper;
     @Autowired
     private IssuerService issuerService;

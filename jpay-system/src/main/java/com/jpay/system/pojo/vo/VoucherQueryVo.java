@@ -7,6 +7,6 @@ import java.util.List;
 
 @Data
 public class VoucherQueryVo {
-    private Integer allCount;
+    private Long allCount;
     private List<AcqVoucherPo> rows;
 }

@@ -1,15 +1,16 @@
 package com.jpay.system.pojo.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Data
-@Table(name = "sys_acc_type")
+@TableName("sys_acc_type")
 public class SysAccTypePo {
-    @Id
+    @TableId(type = IdType.INPUT)
     private String accType;
     private String accName;
     private String issuId;

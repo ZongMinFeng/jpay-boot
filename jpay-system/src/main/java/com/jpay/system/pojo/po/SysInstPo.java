@@ -1,15 +1,16 @@
 package com.jpay.system.pojo.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Data
-@Table(name = "sys_inst")
+@TableName("sys_inst")
 public class SysInstPo {
-    @Id
+    @TableId(type = IdType.INPUT)
     private String instId;
     private String instName;
     private String parentInstId;

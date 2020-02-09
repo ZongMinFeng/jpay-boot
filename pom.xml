@@ -120,37 +120,39 @@
             <version>3.7.0</version>
         </dependency>
 
-        <!--shiro-->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring-boot-starter</artifactId>
-            <version>1.4.0</version>
-        </dependency>
-        <!-- shiro-redis -->
-        <dependency>
-            <groupId>org.crazycake</groupId>
-            <artifactId>shiro-redis</artifactId>
-            <version>3.1.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.shiro</groupId>
-                    <artifactId>shiro-core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        &lt;!&ndash;shiro&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.shiro</groupId>-->
+<!--            <artifactId>shiro-spring-boot-starter</artifactId>-->
+<!--            <version>1.4.0</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash; shiro-redis &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.crazycake</groupId>-->
+<!--            <artifactId>shiro-redis</artifactId>-->
+<!--            <version>3.1.0</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.apache.shiro</groupId>-->
+<!--                    <artifactId>shiro-core</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
 
-        <!-- mybatis-plus -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
+
 
         <!-- druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid.version}</version>
+        </dependency>
+
+        <!--test-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

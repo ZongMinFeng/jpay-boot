@@ -1,15 +1,16 @@
 package com.jpay.system.pojo.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Data
-@Table(name = "auth_login_info")
+@TableName("auth_login_info")
 public class AuthLoginInfo {
-    @Id
+    @TableId(type = IdType.INPUT)
     private String id;
     private String userId;
     private String randKey;

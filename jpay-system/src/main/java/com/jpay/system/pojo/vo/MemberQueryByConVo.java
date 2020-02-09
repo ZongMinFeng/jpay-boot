@@ -7,6 +7,6 @@ import java.util.List;
 
 @Data
 public class MemberQueryByConVo {
-    private Integer allCount;
+    private Long allCount;
     private List<UserInfoPo> rows;
 }

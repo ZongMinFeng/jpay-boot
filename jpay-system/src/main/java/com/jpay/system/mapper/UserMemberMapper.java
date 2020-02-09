@@ -1,11 +1,13 @@
 package com.jpay.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.jpay.system.pojo.po.UserMemberPo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import tk.mybatis.mapper.common.Mapper;
+import org.springframework.stereotype.Repository;
 
-public interface UserMemberMapper extends Mapper<UserMemberPo> {
+@Repository
+public interface UserMemberMapper extends BaseMapper<UserMemberPo> {
     @Select("SELECT count(*) FROM user_member WHERE issu_id=#{issuId}")
     Integer queryTotalNum(@Param("issuId") String issuId);
 

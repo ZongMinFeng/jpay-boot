@@ -1,12 +1,12 @@
 package com.jpay.system.pojo.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
-
-import javax.persistence.Id;
 
 @Data
 public class SysSequence {
-    @Id
+    @TableId(type = IdType.INPUT)
     private String sequenceName;
     private Long value;
     private String memo;
