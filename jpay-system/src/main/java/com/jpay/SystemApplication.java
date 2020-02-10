@@ -11,7 +11,6 @@ import java.util.TimeZone;
 
 @EnableSwagger2
 @SpringBootApplication
-@MapperScan(basePackages = "com.jpay.system.mapper", annotationClass = Repository.class)
 public class SystemApplication {
     @PostConstruct
     void setDefaultTimezone() {

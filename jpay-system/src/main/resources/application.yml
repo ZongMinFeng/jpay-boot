@@ -5,6 +5,7 @@ spring:
   application:
     name: system
   datasource:
+    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/jpay?serverTimezone=GMT%2B8
     username: root
     password: 123456
@@ -25,11 +26,19 @@ spring:
     time-zone: Asia/Shanghai
     date-format: yyyy-MM-dd HH:mm:ss
 
-
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis plus 设置
+mybatis-plus:
+  mapper-locations: classpath*:com/jpay/system/mapper/xml/*Mapper.xml
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      #主键类型  0:"数据库ID自增",1:"该类型为未设置主键类型", 2:"用户输入ID",3:"全局唯一ID (数字类型唯一ID)", 4:"全局唯一ID UUID",5:"字符串全局唯一ID (idWorker 的字符串表示)";
+      id-type: 4
+      # 默认数据库表下划线命名
+      table-underline: true
 
 logging:
   level:
     root: info
+    com.jpay.system: trace

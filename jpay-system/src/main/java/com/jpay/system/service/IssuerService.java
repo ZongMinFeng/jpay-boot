@@ -42,7 +42,7 @@ public class IssuerService {
      * @return
      */
     public SysInstPo getIssuUinst(String instId){
-        SysInstPo uInstPo = uInstMapper.selectByPrimaryKey(instId);
+        SysInstPo uInstPo = uInstMapper.selectById(instId);
         if (uInstPo==null){
             return null;
         }

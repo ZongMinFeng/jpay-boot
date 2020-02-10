@@ -113,7 +113,7 @@ public class AccountService {
         }
 
         //查询余额
-        UserAccountPo panPo=panMapper.selectByPrimaryKey(chargeTo.getPan());
+        UserAccountPo panPo=panMapper.selectById(chargeTo.getPan());
         if (panPo==null){
             throw new JpayBootException("卡片不存在");
         }
@@ -162,7 +162,7 @@ public class AccountService {
             throw new JpayBootException("卡片充值失败");
         }
         //查询余额
-        UserAccountPo panPo=panMapper.selectByPrimaryKey(saleTo.getPan());
+        UserAccountPo panPo=panMapper.selectById(saleTo.getPan());
         if (panPo==null){
             throw new JpayBootException("卡片不存在");
         }
@@ -210,7 +210,7 @@ public class AccountService {
      */
     public Double refund(RefundTo refundTo){
         //查找原交易
-        AcqTransPo acqTransPo = acqTransMapper.selectByPrimaryKey(refundTo.getOrgTransId());
+        AcqTransPo acqTransPo = acqTransMapper.selectById(refundTo.getOrgTransId());
         if (acqTransPo==null){
             throw new JpayBootException("无此交易");
         }
@@ -244,7 +244,7 @@ public class AccountService {
         }
 
         //查询余额
-        UserAccountPo accountPo=panMapper.selectByPrimaryKey(refundTo.getAccount());
+        UserAccountPo accountPo=panMapper.selectById(refundTo.getAccount());
         if (accountPo==null){
             throw new JpayBootException("卡片不存在");
         }

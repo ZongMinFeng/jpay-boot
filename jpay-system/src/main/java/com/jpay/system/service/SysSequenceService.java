@@ -21,7 +21,7 @@ public class SysSequenceService {
         }
         Long curr_value=sysSequence.getValue();
         sysSequence.setValue(sysSequence.getValue()+1);
-        int i = sysSequenceMapper.updateByPrimaryKey(sysSequence);
+        int i = sysSequenceMapper.updateById(sysSequence);
         if (i!=1){
             throw new JpayBootException("更新序列失败");
         }

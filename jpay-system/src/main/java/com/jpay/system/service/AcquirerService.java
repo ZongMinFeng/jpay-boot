@@ -29,7 +29,7 @@ public class AcquirerService {
      * @return
      */
     public SysInstPo getAcqUinst(String instId){
-        SysInstPo uInstPo = uInstMapper.selectByPrimaryKey(instId);
+        SysInstPo uInstPo = uInstMapper.selectById(instId);
         if (uInstPo==null){
             return null;
         }

@@ -5,11 +5,9 @@ import com.jpay.system.pojo.po.AcqVoucherDetailPo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface AcqVoucherDetailMapper extends BaseMapper<AcqVoucherDetailPo> {
     @Select("SELECT trans_id as transId, voucher, account, amt, refund_amt as refundAmt FROM acq_voucher_detail WHERE voucher=#{voucher}")
     List<AcqVoucherDetailPo> queryByVoucher(@Param("voucher") String voucher);
