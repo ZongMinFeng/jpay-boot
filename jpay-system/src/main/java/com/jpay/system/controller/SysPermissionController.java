@@ -46,9 +46,10 @@ public class SysPermissionController {
 				return Result.error("TOKEN不允许为空！");
 			}
 			log.info(" ------ 通过令牌获取用户拥有的访问菜单 ---- TOKEN ------ " + token);
-			String username = "jeecg";//test
+			String username = "system";//test
 			List<SysPermission> metaList = sysPermissionService.queryByUser(username);
 			//添加首页路由
+			log.debug("metaList:"+metaList);//debug
 			PermissionDataUtil.addIndexPage(metaList);
 			JSONObject json = new JSONObject();
 			JSONArray menujsonArray = new JSONArray();
@@ -65,6 +66,7 @@ public class SysPermissionController {
 			JSONArray allauthjsonArray = new JSONArray();
 			this.getAllAuthJsonArray(allauthjsonArray, allAuthList);
 			//路由菜单
+			log.debug("menujsonArray"+menujsonArray);//debug
 			json.put("menu", menujsonArray);
 			//按钮权限
 			json.put("auth", authjsonArray);
